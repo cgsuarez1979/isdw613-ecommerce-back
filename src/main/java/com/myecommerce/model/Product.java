@@ -2,7 +2,10 @@ package com.myecommerce.model;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -21,6 +24,14 @@ public class Product {
 
     @Column(name="imageUrl")
     private String imageUrl;
+
+    @Column(name="price")
+    private Float price;
+
+   
+    @ManyToOne //(fetch = FetchType.LAZY)
+    @JoinColumn(name="category_name")
+    private Categories category;
 
     public Integer getId() {
         return id;
@@ -48,6 +59,11 @@ public class Product {
         this.imageUrl = imageUrl;
     }
     
-    
+   public Categories getCategory() {
+        return category;
+    }
+    public void setCategory(Categories category) {
+        this.category = category;
+    }   
     
 }
